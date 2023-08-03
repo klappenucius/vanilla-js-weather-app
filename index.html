@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="src/style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Rubik:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+  </head>
+  <body class="column_container">
+    <header class="row_container">
+      <h3>Show weather in</h3>
+      <form class="searchBar">
+        <input type="text" placeholder="Enter a city" id="searched_city" />
+        <input type="submit" value="Search" />
+      </form>
+    </header>
+    <main class="row_container">
+      <div class="column_container">
+        <h1 id="city_name"></h1>
+        <p id="date_and_time"></p>
+        <div class="row_container" id="temp_box">
+          <h1 id="temperature"></h1>
+          <span id="conversion_links"
+            ><a href="#" id="signC">°C</a> | <a href="#" id="signF">°F</a></span
+          >
+        </div>
+        <h4 id="humidity"></h4>
+        <h4 id="visibility"></h4>
+        <h4 id="wind"></h4>
+      </div>
+      <figure class="row_container">
+        <img src="#" width="70%" id="icon" title="#" />
+        <div width="30%"></div>
+      </figure>
+    </main>
+    <script type="text/javascript" src="src/index.js"></script>
+  </body>
+</html>
