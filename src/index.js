@@ -10,7 +10,17 @@ let humidity = document.querySelector("#humidity");
 let visibility = document.querySelector("#visibility");
 let wind = document.querySelector("#wind");
 
-function getSearchResults(event) {
+/*async function populateForecastIcons() {
+  const requestURL = "descriptions.JSON";
+  const request = new Request(requestURL);
+
+  const response = await fetch(request);
+  const forecastIcons = await response.json();
+
+  getSearchResults(forecastIcons);
+}*/
+
+function getSearchResults(event, obj) {
   event.preventDefault();
   let searchRes = document.querySelector("#searched_city").value.toLowerCase();
   let datum = new Date();
@@ -31,7 +41,49 @@ function getSearchResults(event) {
     humidity.innerHTML = "Humidity: " + response.data.main.humidity + " %";
     visibility.innerHTML = "Visibility: " + response.data.visibility + " km";
     wind.innerHTML = "Wind: " + response.data.wind.speed + " km/h";
+
+    console.log(response);
+    getForecastData(response.data.coord);
   }
+
+  function getForecastData(coordinates) {
+    console.log(coordinates);
+    function displayDailyForecast(response) {
+      function getDayFromDate(dateString) {
+        const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        const date = new Date(dateString);
+        const dayIndex = date.getDay();
+        return daysOfWeek[dayIndex];
+      }
+      let forecastElement = document.querySelector("#forecast");
+      console.log(response);
+      let forecastHTML = ``;
+      //function getIcons(obj) {
+      for (i = 1; i < 7; i++) {
+        let day = getDayFromDate(response.data.daily.time[i].toString());
+        let maxTemp = Math.round(response.data.daily.temperature_2m_max[i]);
+        let minTemp = Math.round(response.data.daily.temperature_2m_min[i]);
+        //let weatherDescr = response.data.daily.weathercode[i].toString();
+        forecastHTML =
+          forecastHTML +
+          `<div class=column_container width=100% id="forecastDay">
+            <p id="dayInWeek">${day}</p>
+            <span class="row_container" id="maxAndMinTemp">
+              <p id="max">${maxTemp}°</p>
+              <p id="min">${minTemp}°</p>
+            </span>
+          </div>
+          `;
+        forecastElement.innerHTML = forecastHTML;
+      }
+      //}
+    }
+
+    let apiKey = "578a0dfaf14c841b5e058f559db8e562";
+    let apiUrlForEachDay = `https://api.open-meteo.com/v1/forecast?latitude=${coordinates.lat}&longitude=${coordinates.lon}&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto`;
+    axios.get(apiUrlForEachDay).then(displayDailyForecast);
+  }
+
   let apiKey = "578a0dfaf14c841b5e058f559db8e562";
   let apiUrlCel = `https://api.openweathermap.org/data/2.5/weather?q=${searchRes}&appid=${apiKey}&units=metric`;
   axios.get(apiUrlCel).then(presentWeatherData);
@@ -44,6 +96,7 @@ function getCelsiusTemp(event) {
   function showCelsius(response) {
     temp.innerHTML = Math.round(response.data.main.temp);
   }
+
   let searchRes = document.querySelector("#searched_city").value.toLowerCase();
   let apiKey = "578a0dfaf14c841b5e058f559db8e562";
   let apiUrlCel = `https://api.openweathermap.org/data/2.5/weather?q=${searchRes}&appid=${apiKey}&units=metric`;

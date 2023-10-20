@@ -18,25 +18,37 @@
         <input type="submit" value="Search" />
       </form>
     </header>
-    <main class="row_container">
-      <div class="column_container">
-        <h1 id="city_name"></h1>
-        <p id="date_and_time"></p>
-        <div class="row_container" id="temp_box">
-          <h1 id="temperature"></h1>
-          <span id="conversion_links"
-            ><a href="#" id="signC">°C</a> | <a href="#" id="signF">°F</a></span
-          >
+    <div class="column_container" id="wrapper">
+      <main class="row_container">
+        <div class="column_container">
+          <h1 id="city_name"></h1>
+          <p id="date_and_time"></p>
+          <div class="row_container" id="temp_box">
+            <h1 id="temperature"></h1>
+            <span id="conversion_links"
+              ><a href="#" id="signC">°C</a> |
+              <a href="#" id="signF">°F</a></span
+            >
+          </div>
+          <p id="humidity"></p>
+          <p id="visibility"></p>
+          <p id="wind"></p>
         </div>
-        <h4 id="humidity"></h4>
-        <h4 id="visibility"></h4>
-        <h4 id="wind"></h4>
-      </div>
-      <figure class="row_container">
-        <img src="#" width="70%" id="icon" title="#" />
-        <div width="30%"></div>
-      </figure>
-    </main>
+        <figure class="row_container">
+          <img src="#" width="70%" id="icon" title="#" />
+          <div width="30%"></div>
+        </figure>
+      </main>
+      <article class="row_container" id="forecast"></article>
+    </div>
+    <p class="github">
+      Check this out on
+      <a
+        class="github"
+        href="https://github.com/klappenucius/vanilla-js-weather-app"
+        >GitHub</a
+      >
+    </p>
     <script type="text/javascript" src="src/index.js"></script>
   </body>
 </html>

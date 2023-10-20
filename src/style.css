@@ -38,12 +38,15 @@ header > h3 {
 header > form {
   width: 50%;
 }
-main {
+
+#wrapper {
   width: 30%;
-  margin-left: 35%;
-  margin-right: 35%;
   border: solid 1px gray;
   border-radius: 5px;
+}
+
+main {
+  width: 100%;
 }
 
 main > div > p {
@@ -77,10 +80,13 @@ main > figure {
   margin-left: 1%;
 }
 
-main > div > h4 {
+#humidity,
+#visibility,
+#wind {
   margin-bottom: 1%;
   text-align: left;
   margin-left: 10%;
+  font-size: 1rem;
 }
 
 #signC:link {
@@ -111,6 +117,31 @@ main > div > h4 {
   color: rgb(44, 44, 44);
 }
 
+#maxAndMinTemp {
+  gap: 10%;
+  width: 100%;
+}
+
+#min {
+  color: rgb(20, 96, 141);
+}
+
+#max {
+  color: rgb(141, 20, 46);
+}
+
+article {
+  width: 90%;
+  justify-content: space-between;
+  margin-bottom: 2%;
+}
+
+#forecastDay {
+  border: solid 0.5px rgb(172, 171, 171);
+  border-radius: 5px;
+  width: 14%;
+}
+
 @media (max-width: 1025px) {
   header {
     width: 100%;
@@ -130,6 +161,10 @@ main > div > h4 {
   main > h3 {
     margin-left: 10%;
   }
+}
+
+.github {
+  font-size: 0.5rem;
 }
 
 @media (max-width: 998px) {
